@@ -67,14 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
         "Gallery/highlights/family/Image6.jpg",
         "Gallery/highlights/family/Image7.jpg",
         "Gallery/highlights/family/Image9.jpeg",
+        "Gallery/highlights/family/Image12.jpg",
         "Gallery/highlights/family/Image13.jpg",
-        "Gallery/highlights/family/Image18.jpg",
-        "Gallery/highlights/family/Image19.jpg",
         "Gallery/highlights/family/Image20.jpg",
         "Gallery/highlights/family/Image22.jpg",
         "Gallery/highlights/family/Image24.jpg",
         "Gallery/highlights/family/Image25.jpg",
-        "Gallery/highlights/family/Image12.jpg",
     ];
 
     let famIndex = 0;
