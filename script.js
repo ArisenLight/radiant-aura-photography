@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Gallery/highlights/family/Image18.jpg",
         "Gallery/highlights/family/Image13.jpg",
         "Gallery/highlights/maternity/Image21.jpg",
-        "Gallery/highlights/formal/Image26.jpeg",
+        "Gallery/highlights/formal/Image29.jpeg",
         "Gallery/highlights/maternity/Image2.jpeg"
     ];
 
@@ -88,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const formalImages = [
-            "Gallery/highlights/formal/Image26.jpeg",
             "Gallery/highlights/formal/Image28.jpeg",
             "Gallery/highlights/formal/Image29.jpeg",
             "Gallery/highlights/formal/Image30.jpeg"
