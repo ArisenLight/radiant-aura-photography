@@ -69,8 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
         "Gallery/highlights/family/Image9.jpeg",
         "Gallery/highlights/family/Image12.jpg",
         "Gallery/highlights/family/Image13.jpg",
+        "Gallery/highlights/family/Image18.jpg",
+        "Gallery/highlights/family/Image19.jpg",
         "Gallery/highlights/family/Image20.jpg",
         "Gallery/highlights/family/Image22.jpg",
+        "Gallery/highlights/family/Image23.jpg",
         "Gallery/highlights/family/Image24.jpg",
         "Gallery/highlights/family/Image25.jpg",
     ];
@@ -88,7 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const formalImages = [
             "Gallery/highlights/formal/Image28.jpeg",
             "Gallery/highlights/formal/Image29.jpeg",
-            "Gallery/highlights/formal/Image30.jpeg"
+            "Gallery/highlights/formal/Image30.jpeg",
+            "Gallery/highlights/formal/Image26.jpeg"
         ];
 
         let formIndex = 0;
