@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     "Gallery/highlights/maternity/Image16.jpg",
     "Gallery/highlights/maternity/Image17.jpg",
     "Gallery/highlights/maternity/Image21.jpg",
-    "Gallery/highlights/maternity/Image23.jpg",
     "Gallery/highlights/maternity/Image27.jpeg"
     ];
 
