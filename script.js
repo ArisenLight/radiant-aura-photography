@@ -36,13 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
 //gallery
 document.addEventListener('DOMContentLoaded', () => {
     const maternityImages = [
-    "Gallery/highlights/maternity/Image1.jpeg",
     "Gallery/highlights/maternity/Image2.jpeg",
     "Gallery/highlights/maternity/Image3.jpeg",
     "Gallery/highlights/maternity/Image4.jpeg",
     "Gallery/highlights/maternity/Image5.jpeg",
     "Gallery/highlights/maternity/Image8.jpeg",
     "Gallery/highlights/maternity/Image10.jpg",
+    "Gallery/highlights/maternity/Image1.jpeg",
     "Gallery/highlights/maternity/Image11.jpg",
     "Gallery/highlights/maternity/Image14.jpg",
     "Gallery/highlights/maternity/Image15.jpg",
@@ -104,3 +104,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 3000);
             }
 });
+
+
+  const backToTopButton = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopButton.style.display = 'block';
+    } else {
+      backToTopButton.style.display = 'none';
+    }
+  });
+
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
