@@ -88,11 +88,13 @@ window.uploadImage = async function () {
   }
 
   const user = getAuth().currentUser;
-console.log("Logged in user email:", user?.email);
-if (user?.email.toLowerCase() !== "radiantauraphotography@gmail.com") {
+const email = user?.email?.toLowerCase();
+console.log("Logged in user email:", email);
+if (email !== "radiantauraphotography@gmail.com") {
   alert("Not logged in as admin!");
   return;
 }
+
 
 
   const timestamp = Date.now();
