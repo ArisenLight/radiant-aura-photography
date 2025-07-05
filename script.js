@@ -75,37 +75,65 @@ if (path.endsWith("admin.html")) {
     });
   };
 
-  window.uploadImage = async function () {
-    const fileInput = document.getElementById("fileInput");
-    const gallerySelect = document.getElementById("gallerySelect");
-    const file = fileInput.files[0];
-    const selectedGallery = gallerySelect.value;
+window.uploadImage = async function () {
+  const fileInput = document.getElementById("fileInput");
+  const gallerySelect = document.getElementById("gallerySelect");
 
-    if (!file) {
-      alert("Please select a file.");
-      return;
-    }
+  const file = fileInput.files[0];
+  const selectedGallery = gallerySelect.value;
 
-    const timestamp = Date.now();
-    const uniqueName = `client-gallery/${selectedGallery}/${timestamp}-${file.name}`;
+  if (!file) {
+    alert("Please select a file.");
+    return;
+  }
 
-    try {
-      const storageRef = ref(storage, uniqueName);
-      await uploadBytes(storageRef, file);
-      const downloadURL = await getDownloadURL(storageRef);
+  const user = getAuth().currentUser;
+  const email = user?.email;
 
-      await addDoc(collection(db, "images"), {
-        imageUrl: downloadURL,
-        gallery: selectedGallery,
-        timestamp
-      });
+  if (!email) {
+    alert("You must be logged in to upload.");
+    return;
+  }
 
-      alert("Upload complete!");
-      fileInput.value = "";
-    } catch (error) {
-      alert("Upload failed: " + error.message);
-    }
-  };
+  const timestamp = Date.now();
+  let storagePath, firestoreData;
+
+  if (email === "radiantauraphotography@gmail.com") {
+    // Admin upload → public gallery path
+    storagePath = `Gallery/highlights/${selectedGallery}/${timestamp}-${file.name}`;
+    firestoreData = {
+      imageUrl: "", // placeholder
+      gallery: selectedGallery,
+      timestamp: timestamp
+      // no owner field
+    };
+  } else {
+    // Client upload → private gallery path
+    storagePath = `client-gallery/${selectedGallery}/${email}/${timestamp}-${file.name}`;
+    firestoreData = {
+      imageUrl: "", // placeholder
+      gallery: selectedGallery,
+      timestamp: timestamp,
+      owner: email
+    };
+  }
+
+  try {
+    const storageRef = ref(storage, storagePath);
+    await uploadBytes(storageRef, file);
+    const downloadURL = await getDownloadURL(storageRef);
+
+    firestoreData.imageUrl = downloadURL;
+    await addDoc(collection(db, "images"), firestoreData);
+
+    alert("Upload complete!");
+    fileInput.value = "";
+  } catch (error) {
+    console.error(error);
+    alert("Upload failed: " + error.message);
+  }
+};
+
 
   document.addEventListener("DOMContentLoaded", async () => {
     const container = document.getElementById("galleryContainer");
