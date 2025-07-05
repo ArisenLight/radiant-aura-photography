@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gallery | Radiant Aura Photography</title>
+        <title>Admin Panel</title>
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -26,32 +26,32 @@
                 </ul>
             </nav>
 
-            <a href="index.html" style="text-decoration: none; color: inherit;">
-            <div id="titleBar" style="cursor:pointer;">
+            <div id="titleBar">
             <h1 id="title">Radiant Aura</h1>
             <p id="subTitle">---Photography---</p>
             <p class="location">Maryborough and Fraser Coast</p>
             </div>
-            </a>
 
         </header>
 
         <main>
+    <div id="adminPanel" class="admin-box">
+      <h2></h2>
+      <button class="logout-btn" onclick="logout()">Log Out</button>
 
-            <section class="gallery-section">
-                <h2>Formal/Special Occasions</h2>
-            <div class="gallery-grid">
-                <img src="Gallery/highlights/formal/Image28.jpeg">
-                <img src="Gallery/highlights/formal/Image29.jpeg">
-                <img src="Gallery/highlights/formal/Image30.jpeg">
-                <img src="Gallery/highlights/formal/Image26.jpeg">
-                <div id="galleryContainer" data-gallery="formal"></div>
-            </div>
-</section>
+      <h3>Upload a Client Photo</h3>
+      <input type="file" id="fileInput" />
 
-        <button id="backToTop" title="Go top Top">↑ Top</button>
+      <label for="gallerySelect">Select Gallery:</label>
+      <select id="gallerySelect">
+        <option value="maternity">Maternity</option>
+        <option value="family">Family</option>
+        <option value="formal">Formal</option>
+      </select>
 
-        </main>
+      <button class="upload-btn" onclick="uploadImage()">Upload</button>
+    </div>
+  </main>
 
     <footer class="site-footer">
             <div class="social-icons">

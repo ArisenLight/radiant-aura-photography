@@ -329,3 +329,70 @@ body {
 .pricing {
     padding: 20px;
 }
+
+.admin-box {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-box h2, .admin-box h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.admin-box input[type="email"],
+.admin-box input[type="password"],
+.admin-box input[type="file"],
+.admin-box select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.admin-box button {
+  width: 100%;
+  padding: 12px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-btn {
+  background-color: #aaa;
+  margin-bottom: 20px;
+}
+
+.logout-btn:hover {
+  background-color: red;
+  color: black;
+}
+
+.upload-btn {
+  margin-top: 10px;
+  background-color: #0049AC;
+}
+
+.upload-btn:hover {
+    background-color: #003380;
+}
+
+.login-btn {
+    background-color: #0049ac;
+}
+
+.login-btn:hover {
+    background-color: #003380;
+}
