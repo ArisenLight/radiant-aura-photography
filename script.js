@@ -161,10 +161,7 @@ if (email !== "radiantauraphotography@gmail.com") {
       console.error("Error loading images:", error);
     }
   });
-  console.log("Gallery container:", container);
-console.log("Gallery type:", galleryType);
-console.log("Images found:", snapshot.size);
-
+}
 
 // ------------------------
 // Common code (for all pages)
