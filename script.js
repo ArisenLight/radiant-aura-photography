@@ -9,7 +9,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyBYIyN8Wnao-QcoiQ898rJQfnZX-c4Q97Y",
   authDomain: "radiant-aura-photography.firebaseapp.com",
   projectId: "radiant-aura-photography",
-  storageBucket: "radiant-aura-photography.firebasestorage.app",
+  storageBucket: "radiant-aura-photography.appspot.com",
   messagingSenderId: "84953777428",
   appId: "1:84953777428:web:6b216b4664b9175c292e01"
 };
