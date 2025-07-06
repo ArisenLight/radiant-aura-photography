@@ -48,12 +48,15 @@ if (path.endsWith("index.html") || path === "/" || path.endsWith("login.html")) 
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const adminPanel = document.getElementById("adminPanel");
-    const welcomeHeading = adminPanel.querySelector("h2");
-    const email = user.email || "";
-    const username = email.split("@")[0];  // get the part before '@'
-    welcomeHeading.textContent = `Welcome, ${username}`;
+    if (adminPanel) {
+      const welcomeHeading = adminPanel.querySelector("h2");
+      const email = user.email || "";
+      const username = email.split("@")[0];
+      welcomeHeading.textContent = `Welcome, ${username}`;
+    }
   }
 });
+
 
 
 // ------------------------
