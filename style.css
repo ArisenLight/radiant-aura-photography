@@ -279,7 +279,8 @@ body {
     gap: 15px;
 }
 
-.gallery-grid img {
+.gallery-grid img,
+.gallery-grid .gallery-image {
     width: 100%;
     height: auto;
     border-radius: 8px;

@@ -33,7 +33,6 @@ if (path.endsWith("index.html") || path === "/" || path.endsWith("login.html")) 
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         if (user.email === "radiantauraphotography@gmail.com") {
-          alert("Welcome, Sarah!");
           window.location.href = "admin.html"; // Redirect to admin page
         } else {
           alert("You are not authorized.");
