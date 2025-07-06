@@ -64,7 +64,6 @@ onAuthStateChanged(auth, (user) => {
 if (path.endsWith("admin.html")) {
   onAuthStateChanged(auth, user => {
     if (!user || user.email !== "radiantauraphotography@gmail.com") {
-      alert("Please log in as admin.");
       window.location.href = "index.html";
     } else {
       document.getElementById("adminEmailDisplay").textContent = user.email || "Admin";
@@ -237,7 +236,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "Gallery/highlights/formal/Image28.jpeg",
       "Gallery/highlights/formal/Image29.jpeg",
       "Gallery/highlights/formal/Image30.jpeg",
-      "Gallery/highlights/formal/Image26.jpeg"
+      "Gallery/highlights/formal/Image26.jpeg",
+      "Gallery/highlights/formal/alice-image1.jpeg"
     ]}
   ];
 
