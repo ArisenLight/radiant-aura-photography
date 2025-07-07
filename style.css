@@ -331,11 +331,43 @@ body {
     padding: 20px;
 }
 
+.return-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: #f4f4f4;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.return-button:hover {
+ background: linear-gradient(to right,#5BDDE4,#0049AC);
+  border-color: #999;
+  color: #000;
+}
+
+.return-button svg {
+  stroke: #333;
+  transition: stroke 0.3s;
+}
+
+.return-button:hover svg {
+  stroke: #000;
+}
+
+
 .admin-box {
   max-width: 400px;
   margin: 40px auto;
   padding: 30px;
-  background-color: #ffffff;
+  background: linear-gradient(to right,#5BDDE4,#0049AC);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', sans-serif;
@@ -344,7 +376,6 @@ body {
 .admin-box h2, .admin-box h3 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
 }
 
 .admin-box input[type="email"],
