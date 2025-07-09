@@ -213,6 +213,47 @@ nav {
   transform: translateY(-2px);
 }
 
+ #submitBtn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(to right, #0049AC, #5BDDE4);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #submitBtn:disabled {
+    background: #7aaedc;
+    cursor: not-allowed;
+  }
+
+  #submitBtn:hover:not(:disabled) {
+    background: linear-gradient(to right, #00337a, #4cc9d0);
+  }
+
+  /* Spinner styling */
+  .btn-loader {
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none; /* hidden by default */
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
 
 .social-icons a {
     color: #fff;

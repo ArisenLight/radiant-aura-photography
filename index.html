@@ -74,22 +74,25 @@
 
         
         <section id="contact" class="contact-section">
-            <h2>Contact Me</h2>
+  <h2>Contact Me</h2>
 
-            <form action="https://formsubmit.co/el/bizara" method="POST">
-                <input type="text" name="name" placeholder="Your name" required>
-                <input type="email" name="email" placeholder="Your email" required>
-                <textarea name="message" placeholder="Your message" required></textarea>
+  <form id="contactForm">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <textarea name="message" placeholder="Your message" required></textarea>
 
-                <input type="text" name="_honey" style="display:none">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="box">
-                <input type="hidden" name="_subject" value="New message from your portfolio!">
-                <input type="hidden" name="_next" value="https://radiantauraphotography.com/thankyou.html/">
+    <input type="text" name="_honey" style="display:none" autocomplete="off">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="box">
+    <input type="hidden" name="_subject" value="New message from your portfolio!">
 
-                <button type="submit">Send</button>
-            </form>
-        </section>
+    <button type="submit" id="submitBtn">
+      <span class="btn-text">Send</span>
+      <span class="btn-loader"></span>
+    </button>
+  </form>
+</section>
+
             <button id="backToTop" title="Go top Top">↑ Top</button>
         </main>
 

@@ -85,6 +85,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+ const form = document.getElementById("contactForm");
+  const submitBtn = document.getElementById("submitBtn");
+  const btnText = submitBtn.querySelector(".btn-text");
+  const btnLoader = submitBtn.querySelector(".btn-loader");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Show loader, disable button
+    btnText.style.display = "none";
+    btnLoader.style.display = "inline-block";
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formsubmit.co/el/bizara", {
+        method: "POST",
+        body: formData
+      });
+
+      if (response.ok) {
+        // Redirect to thank you page
+        window.location.href = "https://radiantauraphotography.com/thankyou.html";
+      } else {
+        alert("Oops, something went wrong. Please try again.");
+        // Reset button state
+        btnText.style.display = "inline";
+        btnLoader.style.display = "none";
+        submitBtn.disabled = false;
+      }
+    } catch (error) {
+      alert("Network error. Please check your connection and try again.");
+      // Reset button state
+      btnText.style.display = "inline";
+      btnLoader.style.display = "none";
+      submitBtn.disabled = false;
+      console.error(error);
+    }
+  });
   
 //Back to top button
     const backToTopButton = document.getElementById('backToTop');
