@@ -6,6 +6,7 @@
         <title>Admin Login | Radiant Aura Photography</title>
         <meta name="description" content="Beautiful and professional photography services in Maryborough. View our gallery and book your session today!" />
         <link rel="stylesheet" href="style.css" />
+        <script type="module" src="admin.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
@@ -42,14 +43,43 @@
 
         </header>
 
-        <main>
+        <main class="admin-page">
 
-        <div id="loginForm" class="admin-box">
-  <h2>Admin Login</h2>
-  <input type="email" id="adminEmail" placeholder="Email" />
-  <input type="password" id="adminPassword" placeholder="Password" />
-  <button class="login-btn" onclick="adminLogin()">Log In</button>
+            <h1>Admin Login</h1>
+
+  <div id="login-section">
+    <input type="email" id="email" placeholder="Email"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button id="login-btn">Login</button>
+    <p id="login-error" style="color:red;"></p>
+  </div>
+
+  <div id="upload-section" style="display:none;">
+    <h2>Upload Image</h2>
+    <input type="file" id="fileInput" multiple><br>
+    <div id="previewContainer" class="preview-grid"></div>
+    
+    <select id="gallerySelect">
+      <option value="family">Family</option>
+      <option value="maternity">Maternity</option>
+      <option value="formal">Formal</option>
+    </select><br>
+    <button id="uploadBtn">Upload</button>
+    <p id="uploadStatus"></p>
+    <div id="progressContainer">
+  <div id="progressBar"></div>
+  <button id="cancelUploadBtn">
+  Cancel Upload
+</button>
+
 </div>
+
+<button id="toggleUploadedGalleryBtn">Hide Uploaded Images ▲</button>
+<div id="uploadedGallery"></div>
+    <hr>
+<button id="logoutBtn">Log Out</button>
+  </div>
+
 
         </main>
 
@@ -64,6 +94,41 @@
         </div>
         <p>&copy; 2025 RadiantAura. All rights reserved.</p>
     </footer>
-    <script type="module" src="script.js"></script>
+
+    <!-- Logout Confirmation Popup -->
+<div id="logoutModal" class="modal">
+  <div class="modal-content">
+    <h3>Are you sure you want to log out?</h3>
+    <div class="modal-buttons">
+      <button id="confirmLogoutBtn" class="danger-btn">Yes, Log Out</button>
+      <button id="cancelLogoutBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+    <!-- Cancel Upload Confirmation Modal -->
+<div id="cancelModal">
+  <div class="modal-content">
+    <h3>Are you sure you want to cancel the upload?</h3>
+    <div class="modal-buttons">
+      <button id="confirmCancelBtn" class="confirm-btn">Yes, Cancel</button>
+      <button id="cancelCancelBtn" class="cancel-btn">No, Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteConfirmModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <p>Are you sure you want to delete this image?</p>
+    <div class="modal-buttons">
+      <button id="confirmDeleteBtn" class="modal-btn confirm-btn">Yes, Delete</button>
+      <button id="cancelDeleteBtn" class="modal-btn cancel-btn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+    
     </body>
 </html>
