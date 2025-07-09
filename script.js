@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "Gallery/highlights/formal/Image29.jpeg",
       "Gallery/highlights/formal/Image30.jpeg",
       "Gallery/highlights/formal/Image26.jpeg",
-      "Gallery/highlights/formal/alice-image1.jpeg"
+      "Gallery/highlights/formal/alice-image1.jpg"
     ]}
   ];
 
