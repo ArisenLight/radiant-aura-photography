@@ -1,4 +1,7 @@
-/* Client Gallery Page Styles */
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
 
 .client-gallery-header {
   display: flex;

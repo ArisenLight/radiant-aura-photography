@@ -29,3 +29,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
         alert("Error: " + error.message);
       }
     });
+
+      // Hamburger menu toggle
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("navMenu");
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+      const icon = hamburger.querySelector("i");
+      icon.classList.toggle("fa-bars");
+      icon.classList.toggle("fa-times");
+    });
+  }
