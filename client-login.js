@@ -1,5 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -20,39 +24,45 @@ const loginForm = document.getElementById('login-form');
 const loginErrorModal = document.getElementById('loginErrorModal');
 const closeLoginErrorBtn = document.getElementById('closeLoginErrorBtn');
 
-// Show login error modal with message
+// Show login error modal
 function showLoginError(message = "Incorrect email or password. Please try again.") {
-  document.getElementById('loginErrorMsg').textContent = message;
-  loginErrorModal.style.display = 'flex';
+  const msgBox = document.getElementById('loginErrorMsg');
+  if (msgBox) msgBox.textContent = message;
+  if (loginErrorModal) loginErrorModal.style.display = 'flex';
 }
 
-// Close modal handlers
-closeLoginErrorBtn.addEventListener('click', () => {
-  loginErrorModal.style.display = 'none';
-});
-loginErrorModal.addEventListener('click', e => {
-  if (e.target === loginErrorModal) {
+// Close error modal
+if (closeLoginErrorBtn) {
+  closeLoginErrorBtn.addEventListener('click', () => {
     loginErrorModal.style.display = 'none';
-  }
-});
+  });
+}
 
-// Login form submit
-loginForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('login-email').value.trim();
-  const password = document.getElementById('login-password').value;
+if (loginErrorModal) {
+  loginErrorModal.addEventListener('click', (e) => {
+    if (e.target === loginErrorModal) {
+      loginErrorModal.style.display = 'none';
+    }
+  });
+}
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    // Redirect after successful login
-    window.location.href = "client-gallery.html";
-  } catch (error) {
-    // Show modal on error instead of alert
-    showLoginError("Login failed: " + "invalid email or password");
-  }
-});
+// Submit login form
+if (loginForm) {
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
 
-// Hamburger menu toggle (optional, if you have a hamburger menu)
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      window.location.href = "client-gallery.html";
+    } catch (error) {
+      showLoginError("Login failed: Invalid email or password.");
+    }
+  });
+}
+
+// Hamburger menu toggle
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("navMenu");
 
@@ -62,5 +72,39 @@ if (hamburger && navMenu) {
     const icon = hamburger.querySelector("i");
     icon.classList.toggle("fa-bars");
     icon.classList.toggle("fa-times");
+  });
+}
+
+// Logout modal (only if present)
+const logoutBtn = document.getElementById("logoutBtn");
+const logoutModal = document.getElementById("logoutModal");
+const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
+
+if (logoutBtn && logoutModal && confirmLogoutBtn && cancelLogoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    logoutModal.classList.add("show");
+  });
+
+  cancelLogoutBtn.addEventListener("click", () => {
+    logoutModal.classList.remove("show");
+  });
+
+  confirmLogoutBtn.addEventListener("click", () => {
+    signOut(auth).then(() => {
+      window.location.href = "/admin-login.html";
+    });
+  });
+
+  logoutModal.addEventListener("click", (e) => {
+    if (e.target === logoutModal) {
+      logoutModal.classList.remove("show");
+    }
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && logoutModal.classList.contains("show")) {
+      logoutModal.classList.remove("show");
+    }
   });
 }
