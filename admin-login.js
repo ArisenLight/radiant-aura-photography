@@ -18,6 +18,8 @@
     const passwordInput = document.getElementById("password");
     const loginError = document.getElementById("login-error");
 
+    
+
     loginBtn.addEventListener("click", () => {
       const email = emailInput.value.trim();
       const password = passwordInput.value;

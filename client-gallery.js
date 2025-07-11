@@ -31,6 +31,9 @@ const galleryEl = document.getElementById("gallery");
 const welcomeMsg = document.getElementById("welcome-msg");
 const logoutBtn = document.getElementById("logoutBtn");
 const downloadAllBtn = document.getElementById("downloadAllBtn");
+const downloadErrorModal = document.getElementById('downloadErrorModal');
+const closeDownloadErrorBtn = document.getElementById('closeDownloadErrorBtn');
+
 
 const logoutConfirmModal = document.getElementById("logoutConfirmModal");
 const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
@@ -74,7 +77,6 @@ async function loadClientGallery(email) {
       downloadBtn.download = itemRef.name;
 
       wrapper.appendChild(img);
-      wrapper.appendChild(downloadBtn);
       galleryEl.appendChild(wrapper);
     }
   } catch (error) {
@@ -172,10 +174,60 @@ downloadAllBtn.addEventListener("click", async () => {
     link.click();
     link.remove();
   } catch (error) {
-    console.error("Error downloading all images:", error);
-    alert("Failed to download images. Please try again.");
-  }
+  console.error("Error downloading all images:", error);
+  document.getElementById('downloadErrorMsg').textContent = "Failed to download images. Please try again later.";
+  downloadErrorModal.style.display = 'flex';
+  downloadErrorModal.setAttribute('aria-hidden', 'false');
+}
+
 
   downloadAllBtn.disabled = false;
   downloadAllBtn.textContent = "Download All";
 });
+
+// Image preview modal
+const previewModal = document.getElementById("imagePreviewModal");
+const previewImage = document.getElementById("previewImage");
+
+// Open modal when any image is clicked
+galleryEl.addEventListener("click", (e) => {
+  if (e.target.tagName === "IMG") {
+    previewImage.src = e.target.src;
+    previewModal.style.display = "flex";
+  }
+});
+
+// Close modal on click outside or Escape
+previewModal.addEventListener("click", (e) => {
+  if (e.target === previewModal || e.target === previewImage) {
+    previewModal.style.display = "none";
+    previewImage.src = "";
+  }
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    previewModal.style.display = "none";
+    previewImage.src = "";
+  }
+});
+
+closeDownloadErrorBtn.addEventListener('click', () => {
+  downloadErrorModal.style.display = 'none';
+  downloadErrorModal.setAttribute('aria-hidden', 'true');
+});
+
+downloadErrorModal.addEventListener('click', e => {
+  if (e.target === downloadErrorModal) {
+    downloadErrorModal.style.display = 'none';
+    downloadErrorModal.setAttribute('aria-hidden', 'true');
+  }
+});
+
+window.addEventListener('keydown', e => {
+  if (e.key === "Escape" && downloadErrorModal.style.display === "flex") {
+    downloadErrorModal.style.display = 'none';
+    downloadErrorModal.setAttribute('aria-hidden', 'true');
+  }
+});
+

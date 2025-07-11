@@ -1,146 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Dashboard | Radiant Aura Photography</title>
-  <meta name="description" content="Admin dashboard to upload and manage photography galleries." />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - Radiant Aura Photography</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin-dashboard.css" />
   <script type="module" src="admin-dashboard.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-  <link rel="manifest" href="site.webmanifest" />
 </head>
 <body>
   <header>
     <nav>
-      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
-      <ul class="navbar" id="navMenu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="admin-login.html">Admin Login</a></li>
-        <li><a href="client-login.html">Client Login</a></li>
+      <ul class="navbar">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Galleries</a></li>
+        <li><a href="#">Settings</a></li>
       </ul>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
     </nav>
-    <a href="index.html" style="text-decoration: none; color: inherit;">
-      <div id="titleBar" style="cursor:pointer;">
-        <h1 id="title">Radiant Aura</h1>
-        <p id="subTitle">---Photography---</p>
-        <p class="location">Maryborough and Fraser Coast</p>
-      </div>
-    </a>
   </header>
 
-<main class="admin-page">
-  <div id="upload-section">
-    <h2>Upload Options</h2>
+  <div id="titleBar">
+    <h1>Radiant Aura Admin Dashboard</h1>
+    <p>Manage uploads and galleries</p>
+  </div>
 
-    <!-- Toggle Buttons -->
+  <main class="admin-page">
+
+    <div class="admin-tabs">
+      <button id="uploadTabBtn" class="tab active">Upload</button>
+      <button id="publicTabBtn" class="tab">Public Gallery</button>
+      <button id="clientTabBtn" class="tab">Client Gallery</button>
+    </div>
+
+    <!-- Upload Toggle Buttons -->
     <div class="upload-toggle">
-      <button id="mainGalleryBtn">Upload to Main Gallery</button>
-      <button id="clientGalleryBtn">Send to Client</button>
+      <button id="mainGalleryBtn" class="toggle-active">Main Gallery Upload</button>
+      <button id="clientGalleryBtn">Client Gallery Upload</button>
     </div>
 
-    <!-- Main Gallery Upload Form -->
-    <div id="mainUploadForm">
-      <h3>Main Gallery Upload</h3>
-      <input type="file" id="fileInput" multiple /><br />
+    <!-- Upload Section -->
+    <section id="upload-section" class="upload-panel">
+      <!-- Main Upload Form -->
+      <form id="mainUploadForm">
+        <label for="gallerySelect">Select Gallery Category:</label>
+        <select id="gallerySelect">
+          <option>Select one</option>
+          <option value="family">Family</option>
+          <option value="maternity">Maternity</option>
+          <option value="formal">Formal</option>
+        </select>
 
-      <div id="previewContainer" class="preview-grid"></div>
+        <input type="file" id="fileInput" multiple accept="image/*" />
+        <div id="previewContainer" class="preview-grid"></div>
 
-      <label for="gallerySelect">Choose Gallery:</label>
-      <select id="gallerySelect">
-        <option value="family">Family</option>
-        <option value="maternity">Maternity</option>
-        <option value="formal">Formal</option>
-      </select><br />
+        <button type="button" id="uploadBtn">Upload</button>
 
-      <button id="uploadBtn">Upload</button>
-      <p id="uploadStatus"></p>
+        <div id="uploadStatus"></div>
+        <div id="progressContainer" style="display:none;">
+          <div id="progressBar"></div>
+        </div>
+        <button type="button" id="cancelUploadBtn" style="display:none;">Cancel Upload</button>
+      </form>
 
-      <div id="progressContainer" style="display:none;">
-        <div id="progressBar"></div>
-        <button id="cancelUploadBtn">Cancel Upload</button>
-      </div>
+      <!-- Client Upload Form -->
+      <form id="clientUploadForm" style="display:none; margin-top: 2rem;">
+        <label for="clientEmail">Client Email:</label>
+        <input type="email" id="clientEmail" placeholder="client@example.com" />
 
-      <button id="toggleUploadedGalleryBtn">Hide Uploaded Images ▲</button>
-      <div id="uploadedGallery"></div>
-    </div>
+        <input type="file" id="clientFileInput" multiple accept="image/*" />
+        <div id="clientPreviewContainer" class="preview-grid"></div>
 
-    <!-- Client Gallery Upload Form -->
-    <div id="clientUploadForm" style="display:none;">
-      <h3>Send Images to Client</h3>
+        <button type="button" id="uploadClientBtn">Upload to Client Gallery</button>
 
-      <label for="clientEmail">Client Email:</label>
-      <input type="email" id="clientEmail" placeholder="client@example.com" /><br />
+        <div id="clientUploadStatus"></div>
+        <div id="clientProgressContainer" style="display:none;">
+          <div id="clientProgressBar"></div>
+        </div>
+        <button type="button" id="cancelClientUploadBtn" style="display:none;">Cancel Upload</button>
+      </form>
+    </section>
 
-      <input type="file" id="clientFileInput" multiple /><br />
-      <div id="clientPreviewContainer" class="preview-grid"></div>
+    <!-- Public Gallery Section -->
+    <section id="publicGallerySection" class="gallery-section hidden">
+      <h2>Public Gallery Images</h2>
+      <div id="publicGalleryGrid" class="gallery-grid"></div>
+    </section>
 
-      <div id="clientProgressContainer" style="display:none; margin-top: 10px;">
-  <div id="clientProgressBar" style="width: 0%; height: 20px; background-color: #4caf50; border-radius: 5px;"></div>
-  <button id="cancelClientUploadBtn" style="margin-top: 5px;">Cancel Upload</button>
-</div>
+    <!-- Client Gallery Section -->
+    <section id="clientGallerySection" class="gallery-section hidden">
+      <h2>Client Galleries</h2>
+      <div id="clientGalleryGrid"></div>
+    </section>
 
+  </main>
 
-      <button id="uploadClientBtn">Send to Client</button>
-      <p id="clientUploadStatus"></p>
-    </div>
-
-    <hr />
-    <button id="logoutBtn">Log Out</button>
-  </div>
-</main>
-
-
-  <footer class="site-footer">
-    <div class="social-icons">
-      <a href="https://www.instagram.com/radiant_aura_photography?igsh=NWo5Z3FoZzdtbnBj&utm_source=qr" target="_blank">
-        <i class="fab fa-instagram fa-2x"></i>
-      </a>
-      <a href="https://www.facebook.com/sarahdonnellyphotography" target="_blank">
-        <i class="fab fa-facebook fa-2x"></i>
-      </a>
-    </div>
-    <p>&copy; 2025 RadiantAura. All rights reserved.</p>
-  </footer>
-
-  <div id="logoutModal" class="modal">
+  <!-- Delete Confirm Modal -->
+  <div id="deleteConfirmModal" class="modal">
     <div class="modal-content">
-      <h3>Are you sure you want to log out?</h3>
-      <div class="modal-buttons">
-        <button id="confirmLogoutBtn" class="danger-btn">Yes, Log Out</button>
-        <button id="cancelLogoutBtn">Cancel</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="cancelModal" class="modal">
-    <div class="modal-content">
-      <h3>Are you sure you want to cancel the upload?</h3>
-      <div class="modal-buttons">
-        <button id="confirmCancelBtn" class="confirm-btn">Yes, Cancel</button>
-        <button id="cancelCancelBtn" class="cancel-btn">No, Continue</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="deleteConfirmModal" class="modal" style="display:none;">
-    <div class="modal-content">
+      <h3>Confirm Delete</h3>
       <p>Are you sure you want to delete this image?</p>
       <div class="modal-buttons">
-        <button id="confirmDeleteBtn" class="modal-btn confirm-btn">Yes, Delete</button>
-        <button id="cancelDeleteBtn" class="modal-btn cancel-btn">Cancel</button>
+        <button id="confirmDeleteBtn" class="danger-btn">Delete</button>
+        <button id="cancelDeleteBtn" class="cancel-btn">Cancel</button>
       </div>
     </div>
   </div>
 
+  <!-- Logout Confirm Modal -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content">
+      <h3>Logout Confirmation</h3>
+      <p>Are you sure you want to logout?</p>
+      <div class="modal-buttons">
+        <button id="confirmLogoutBtn" class="confirm-btn">Logout</button>
+        <button id="cancelLogoutBtn" class="cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Access Denied Modal -->
+<div id="accessDeniedModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <h3>Access Denied</h3>
+    <p>This area is for admin users only.</p>
+    <button id="accessDeniedOkBtn">OK</button>
+  </div>
+</div>
 
 </body>
 </html>
