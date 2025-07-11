@@ -65,12 +65,37 @@ header nav {
   text-shadow: 0 0 5px rgba(91, 221, 228, 0.8);
 }
 
+.navbar li {
+  margin: 0 10px; /* horizontal spacing between buttons */
+}
+
+.navbar a {
+  display: block; /* makes whole area clickable */
+  padding: 12px 16px; /* bigger click/touch target */
+  font-size: 16px; /* easy to read */
+  user-select: none;
+  line-height: 1.5;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+
 .hamburger {
   display: none;
-  font-size: 1.8rem;
-  color: white;
+  padding: 12px 16px;
   cursor: pointer;
+  user-select: none;
 }
+.hamburger i {
+  font-size: 24px; /* bigger icon */
+}
+
 
 /* Title bar styling */
 #titleBar {
@@ -663,6 +688,14 @@ select:focus {
   .navbar li a {
     padding: 12px 16px;
     font-size: 1rem;
+  }
+
+  .navbar.show li {
+    margin: 10px 0; 
+  }
+
+  .navbar.show a {
+    padding: 14px 20px; 
   }
 
   .hamburger {
