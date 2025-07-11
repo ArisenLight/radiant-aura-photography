@@ -44,8 +44,12 @@ header nav {
 
 .navbar {
   list-style: none;
-  display: flex;
+  display: none;
   gap: 20px;
+}
+
+.navbar.show {
+  display: block;
 }
 
 .navbar li a {
@@ -707,5 +711,11 @@ select:focus {
 
   .modal-content {
     padding: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    display: flex !important;
   }
 }
