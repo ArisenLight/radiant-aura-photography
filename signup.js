@@ -1,5 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // Your Firebase config
 const firebaseConfig = {
@@ -8,55 +11,54 @@ const firebaseConfig = {
   projectId: "radiant-aura-photography",
   storageBucket: "radiant-aura-photography.firebasestorage.app",
   messagingSenderId: "84953777428",
-  appId: "1:84953777428:web:6b216b4664b9175c292e01"
+  appId: "1:84953777428:web:6b216b4664b9175c292e01",
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const signupForm = document.getElementById('signup-form');
-const signupSuccessModal = document.getElementById('signupSuccessModal');
-const closeSignupSuccessBtn = document.getElementById('closeSignupSuccessBtn');
+const signupForm = document.getElementById("signup-form");
+const signupSuccessModal = document.getElementById("signupSuccessModal");
+const closeSignupSuccessBtn = document.getElementById("closeSignupSuccessBtn");
 
-signupForm.addEventListener('submit', async (e) => {
+signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById('signup-email').value;
-  const password = document.getElementById('signup-password').value;
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
 
   try {
     await createUserWithEmailAndPassword(auth, email, password);
 
     // Show success modal
-    signupSuccessModal.style.display = 'flex';
-    signupSuccessModal.setAttribute('aria-hidden', 'false');
-
+    signupSuccessModal.style.display = "flex";
+    signupSuccessModal.setAttribute("aria-hidden", "false");
   } catch (error) {
     alert("Error: " + error.message);
   }
 });
 
 // Close modal and redirect to login page
-closeSignupSuccessBtn.addEventListener('click', () => {
-  signupSuccessModal.style.display = 'none';
-  signupSuccessModal.setAttribute('aria-hidden', 'true');
+closeSignupSuccessBtn.addEventListener("click", () => {
+  signupSuccessModal.style.display = "none";
+  signupSuccessModal.setAttribute("aria-hidden", "true");
   window.location.href = "client-login.html"; // Redirect after closing modal
 });
 
 // Close modal if clicked outside modal content
-signupSuccessModal.addEventListener('click', e => {
+signupSuccessModal.addEventListener("click", (e) => {
   if (e.target === signupSuccessModal) {
-    signupSuccessModal.style.display = 'none';
-    signupSuccessModal.setAttribute('aria-hidden', 'true');
+    signupSuccessModal.style.display = "none";
+    signupSuccessModal.setAttribute("aria-hidden", "true");
     window.location.href = "client-login.html";
   }
 });
 
 // Close modal on Escape key press
-window.addEventListener('keydown', e => {
+window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && signupSuccessModal.style.display === "flex") {
-    signupSuccessModal.style.display = 'none';
-    signupSuccessModal.setAttribute('aria-hidden', 'true');
+    signupSuccessModal.style.display = "none";
+    signupSuccessModal.setAttribute("aria-hidden", "true");
     window.location.href = "client-login.html";
   }
 });

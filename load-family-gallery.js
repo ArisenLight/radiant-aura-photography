@@ -4,7 +4,7 @@ import {
   getStorage,
   ref,
   listAll,
-  getDownloadURL
+  getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
 // 🔧 Firebase config
@@ -14,7 +14,7 @@ const firebaseConfig = {
   projectId: "radiant-aura-photography",
   storageBucket: "radiant-aura-photography.firebasestorage.app",
   messagingSenderId: "84953777428",
-  appId: "1:84953777428:web:6b216b4664b9175c292e01"
+  appId: "1:84953777428:web:6b216b4664b9175c292e01",
 };
 
 // 🚀 Init Firebase

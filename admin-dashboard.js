@@ -4,7 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebas
 import {
   getAuth,
   onAuthStateChanged,
-  signOut
+  signOut,
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 import {
   getStorage,
@@ -19,13 +19,13 @@ import {
 // YOUR FIREBASE CONFIG HERE //
 ///////////////////////////////
 const firebaseConfig = {
-      apiKey: "AIzaSyBYIyN8Wnao-QcoiQ898rJQfnZX-c4Q97Y",
-      authDomain: "radiant-aura-photography.firebaseapp.com",
-      projectId: "radiant-aura-photography",
-      storageBucket: "radiant-aura-photography.firebasestorage.app",
-      messagingSenderId: "84953777428",
-      appId: "1:84953777428:web:6b216b4664b9175c292e01"
-    };
+  apiKey: "AIzaSyBYIyN8Wnao-QcoiQ898rJQfnZX-c4Q97Y",
+  authDomain: "radiant-aura-photography.firebaseapp.com",
+  projectId: "radiant-aura-photography",
+  storageBucket: "radiant-aura-photography.firebasestorage.app",
+  messagingSenderId: "84953777428",
+  appId: "1:84953777428:web:6b216b4664b9175c292e01",
+};
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -66,10 +66,14 @@ const cancelUploadBtn = document.getElementById("cancelUploadBtn");
 // Client upload inputs
 const clientEmailInput = document.getElementById("clientEmail");
 const clientFileInput = document.getElementById("clientFileInput");
-const clientPreviewContainer = document.getElementById("clientPreviewContainer");
+const clientPreviewContainer = document.getElementById(
+  "clientPreviewContainer"
+);
 const uploadClientBtn = document.getElementById("uploadClientBtn");
 const clientUploadStatus = document.getElementById("clientUploadStatus");
-const clientProgressContainer = document.getElementById("clientProgressContainer");
+const clientProgressContainer = document.getElementById(
+  "clientProgressContainer"
+);
 const clientProgressBar = document.getElementById("clientProgressBar");
 const cancelClientUploadBtn = document.getElementById("cancelClientUploadBtn");
 
@@ -101,9 +105,6 @@ let imageToDeleteRef = null;
 function sanitizeEmail(email) {
   return email.replace(/[.#$[\]]/g, "_");
 }
-
-
-
 
 //////////////////////
 // INITIAL UI SETUP //
@@ -174,7 +175,7 @@ function initUI() {
   });
 
   // Load galleries initially if needed
-  
+
   loadClientGalleries();
 }
 
@@ -196,9 +197,9 @@ onAuthStateChanged(auth, (user) => {
         modal.style.display = "none";
         signOut(auth).then(() => {
           window.location.href = "/client-login.html";
+        });
       });
-    });
-  }
+    }
   } else {
     window.location.href = "/admin-login.html"; // if not logged in at all
   }
@@ -440,8 +441,6 @@ function cancelCurrentClientUpload() {
 // LOAD PUBLIC GALLERY
 //////////////////////
 
-
-
 async function loadPublicGallery() {
   const galleryDiv = document.getElementById("publicGalleryGrid");
   galleryDiv.innerHTML = "Loading images...";
@@ -471,7 +470,8 @@ async function loadPublicGallery() {
 
         // Optional: Add a label to show which category it came from
         const label = document.createElement("p");
-        label.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+        label.textContent =
+          category.charAt(0).toUpperCase() + category.slice(1);
         label.classList.add("image-label"); // style this in your CSS
 
         // Optional: Add delete button if admin is logged in
@@ -482,10 +482,10 @@ async function loadPublicGallery() {
           deleteBtn.classList.add("delete-btn");
           deleteBtn.dataset.path = itemRef.fullPath;
 
-            deleteBtn.addEventListener("click", () => {
-    imageToDeleteRef = itemRef;
-    deleteConfirmModal.classList.add("show");
-  });
+          deleteBtn.addEventListener("click", () => {
+            imageToDeleteRef = itemRef;
+            deleteConfirmModal.classList.add("show");
+          });
           wrapper.appendChild(deleteBtn);
         }
 
@@ -503,8 +503,6 @@ async function loadPublicGallery() {
     console.error("Error loading public gallery:", error);
   }
 }
-
-
 
 /////////////////////////
 // LOAD CLIENT GALLERIES

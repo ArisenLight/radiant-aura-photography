@@ -2,13 +2,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import {
   getAuth,
   onAuthStateChanged,
-  signOut
+  signOut,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
   getStorage,
   ref,
   listAll,
-  getDownloadURL
+  getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
 // Firebase config
@@ -18,7 +18,7 @@ const firebaseConfig = {
   projectId: "radiant-aura-photography",
   storageBucket: "radiant-aura-photography.firebasestorage.app",
   messagingSenderId: "84953777428",
-  appId: "1:84953777428:web:6b216b4664b9175c292e01"
+  appId: "1:84953777428:web:6b216b4664b9175c292e01",
 };
 
 // Initialize Firebase
@@ -31,9 +31,8 @@ const galleryEl = document.getElementById("gallery");
 const welcomeMsg = document.getElementById("welcome-msg");
 const logoutBtn = document.getElementById("logoutBtn");
 const downloadAllBtn = document.getElementById("downloadAllBtn");
-const downloadErrorModal = document.getElementById('downloadErrorModal');
-const closeDownloadErrorBtn = document.getElementById('closeDownloadErrorBtn');
-
+const downloadErrorModal = document.getElementById("downloadErrorModal");
+const closeDownloadErrorBtn = document.getElementById("closeDownloadErrorBtn");
 
 const logoutConfirmModal = document.getElementById("logoutConfirmModal");
 const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
@@ -81,12 +80,13 @@ async function loadClientGallery(email) {
     }
   } catch (error) {
     console.error("Error loading images:", error);
-    galleryEl.innerHTML = "<p>Failed to load your images. Please try again later.</p>";
+    galleryEl.innerHTML =
+      "<p>Failed to load your images. Please try again later.</p>";
   }
 }
 
 // Auth state listener
-onAuthStateChanged(auth, user => {
+onAuthStateChanged(auth, (user) => {
   if (!user) {
     window.location.href = "client-login.html";
     return;
@@ -110,7 +110,7 @@ confirmLogoutBtn.addEventListener("click", () => {
       sessionStorage.setItem("logged_out", "true");
       window.location.href = "client-login.html";
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Logout error:", error);
       alert("Failed to logout. Please try again.");
       logoutConfirmModal.style.display = "none";
@@ -123,14 +123,14 @@ cancelLogoutBtn.addEventListener("click", () => {
 });
 
 // Optional: Close modal if clicked outside modal content
-logoutConfirmModal.addEventListener("click", e => {
+logoutConfirmModal.addEventListener("click", (e) => {
   if (e.target === logoutConfirmModal) {
     logoutConfirmModal.style.display = "none";
   }
 });
 
 // Optional: Close modal on Escape key press
-window.addEventListener("keydown", e => {
+window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && logoutConfirmModal.style.display === "flex") {
     logoutConfirmModal.style.display = "none";
   }
@@ -174,12 +174,12 @@ downloadAllBtn.addEventListener("click", async () => {
     link.click();
     link.remove();
   } catch (error) {
-  console.error("Error downloading all images:", error);
-  document.getElementById('downloadErrorMsg').textContent = "Failed to download images. Please try again later.";
-  downloadErrorModal.style.display = 'flex';
-  downloadErrorModal.setAttribute('aria-hidden', 'false');
-}
-
+    console.error("Error downloading all images:", error);
+    document.getElementById("downloadErrorMsg").textContent =
+      "Failed to download images. Please try again later.";
+    downloadErrorModal.style.display = "flex";
+    downloadErrorModal.setAttribute("aria-hidden", "false");
+  }
 
   downloadAllBtn.disabled = false;
   downloadAllBtn.textContent = "Download All";
@@ -212,22 +212,21 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-closeDownloadErrorBtn.addEventListener('click', () => {
-  downloadErrorModal.style.display = 'none';
-  downloadErrorModal.setAttribute('aria-hidden', 'true');
+closeDownloadErrorBtn.addEventListener("click", () => {
+  downloadErrorModal.style.display = "none";
+  downloadErrorModal.setAttribute("aria-hidden", "true");
 });
 
-downloadErrorModal.addEventListener('click', e => {
+downloadErrorModal.addEventListener("click", (e) => {
   if (e.target === downloadErrorModal) {
-    downloadErrorModal.style.display = 'none';
-    downloadErrorModal.setAttribute('aria-hidden', 'true');
+    downloadErrorModal.style.display = "none";
+    downloadErrorModal.setAttribute("aria-hidden", "true");
   }
 });
 
-window.addEventListener('keydown', e => {
+window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && downloadErrorModal.style.display === "flex") {
-    downloadErrorModal.style.display = 'none';
-    downloadErrorModal.setAttribute('aria-hidden', 'true');
+    downloadErrorModal.style.display = "none";
+    downloadErrorModal.setAttribute("aria-hidden", "true");
   }
 });
-

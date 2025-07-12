@@ -1,13 +1,13 @@
 @font-face {
-    font-family: 'Amsterdam';
-    src: url('Amsterdam.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Amsterdam";
+  src: url("Amsterdam.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
   padding: 0;
   color: white;
   background-color: #444;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -32,7 +32,7 @@ body {
 
 /* Header and nav styles */
 header nav {
-  background: linear-gradient(to right, #5BDDE4, #0049AC);
+  background: linear-gradient(to right, #5bdde4, #0049ac);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -85,7 +85,6 @@ header nav {
   outline: none;
 }
 
-
 .hamburger {
   display: none;
   padding: 12px 16px;
@@ -96,12 +95,11 @@ header nav {
   font-size: 24px; /* bigger icon */
 }
 
-
 /* Title bar styling */
 #titleBar {
   text-align: center;
   padding: 1px 20px 24px;
-  background: linear-gradient(to right, #5BDDE4, #0049AC);
+  background: linear-gradient(to right, #5bdde4, #0049ac);
   color: white;
   user-select: none;
   border-radius: 0 0 25px 25px;
@@ -154,7 +152,7 @@ header nav {
   padding: 30px 25px;
   margin: 40px auto;
   max-width: 800px;
-  background: linear-gradient(to right, #5BDDE4, #0049AC);
+  background: linear-gradient(to right, #5bdde4, #0049ac);
   border-radius: 15px;
   box-shadow: 0 6px 20px rgba(0, 73, 172, 0.5);
   font-size: 1.15rem;
@@ -173,7 +171,7 @@ header nav {
   width: 48px;
   height: 48px;
   font-size: 24px;
-  background-color: #0049AC;
+  background-color: #0049ac;
   color: white;
   border: none;
   border-radius: 50%;
@@ -205,7 +203,7 @@ header nav {
 
 .site-footer a:hover,
 .site-footer a:focus {
-  color: #5BDDE4;
+  color: #5bdde4;
 }
 
 /* Social Icons */
@@ -218,7 +216,7 @@ header nav {
 
 .social-icons a:hover,
 .social-icons a:focus {
-  color: #5BDDE4;
+  color: #5bdde4;
 }
 
 /* Contact Section */
@@ -227,10 +225,10 @@ header nav {
   margin: 40px auto;
   padding: 25px 30px;
   color: white;
-  background: linear-gradient(to right, #5BDDE4, #0049AC);
+  background: linear-gradient(to right, #5bdde4, #0049ac);
   border-radius: 15px;
   box-shadow: 0 6px 18px rgba(0, 73, 172, 0.5);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   user-select: none;
 }
 
@@ -262,7 +260,7 @@ header nav {
 .contact-section input:focus,
 .contact-section textarea:focus {
   outline: none;
-  border: 2px solid #0049AC;
+  border: 2px solid #0049ac;
   box-shadow: 0 0 8px rgba(91, 221, 228, 0.8);
 }
 
@@ -270,7 +268,7 @@ header nav {
   width: 100%;
   padding: 15px 0;
   font-size: 1.1rem;
-  background: linear-gradient(to right, #0049AC, #5BDDE4);
+  background: linear-gradient(to right, #0049ac, #5bdde4);
   color: white;
   border: none;
   border-radius: 12px;
@@ -300,7 +298,9 @@ header nav {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Gallery Section */
@@ -318,7 +318,7 @@ header nav {
 .gallery-section h2 {
   font-size: 30px;
   margin-bottom: 25px;
-  color: #5BDDE4;
+  color: #5bdde4;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -359,7 +359,7 @@ header nav {
 .category-carousel h2 {
   font-size: 26px;
   margin-bottom: 14px;
-  color: #5BDDE4;
+  color: #5bdde4;
   font-weight: 700;
 }
 
@@ -393,7 +393,7 @@ header nav {
   padding: 25px 30px;
   max-width: 700px;
   color: white;
-  background: linear-gradient(to right, #5BDDE4, #0049AC);
+  background: linear-gradient(to right, #5bdde4, #0049ac);
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 73, 172, 0.6);
   font-weight: 600;
@@ -403,9 +403,9 @@ header nav {
   line-height: 1.6;
 }
 
-
 /* Buttons */
-button, .return-button {
+button,
+.return-button {
   padding: 14px 20px;
   font-weight: 600;
   border-radius: 10px;
@@ -418,7 +418,7 @@ button, .return-button {
 }
 
 button {
-  background: linear-gradient(to right, #0049AC, #5BDDE4);
+  background: linear-gradient(to right, #0049ac, #5bdde4);
   color: white;
   font-weight: 700;
   width: 100%;
@@ -445,7 +445,7 @@ button:focus {
 
 .return-button:hover,
 .return-button:focus {
-  background: linear-gradient(to right, #5BDDE4, #0049AC);
+  background: linear-gradient(to right, #5bdde4, #0049ac);
   border-color: #999;
   color: #000;
 }
@@ -468,8 +468,9 @@ main.admin-page {
 }
 
 /* Login and Upload Sections */
-#login-section, #upload-section {
-  background: linear-gradient(to right, #5BDDE4, #0049AC);
+#login-section,
+#upload-section {
+  background: linear-gradient(to right, #5bdde4, #0049ac);
   padding: 35px 45px;
   border-radius: 15px;
   box-shadow: 0 6px 20px rgba(0, 73, 172, 0.6);
@@ -491,7 +492,7 @@ select {
   background: rgba(255, 255, 255, 0.15);
   color: white;
   box-sizing: border-box;
-  box-shadow: inset 0 1px 5px rgba(255,255,255,0.25);
+  box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.25);
   transition: box-shadow 0.3s ease;
 }
 
@@ -500,7 +501,7 @@ select:focus {
   outline: none;
   box-shadow: 0 0 10px rgba(91, 221, 228, 0.9);
   background: white;
-  color: #0049AC;
+  color: #0049ac;
   font-weight: 700;
 }
 
@@ -628,54 +629,69 @@ select:focus {
 
 .upload-progress-bar {
   height: 100%;
-  background: linear-gradient(to right, #5BDDE4, #0049AC);
+  background: linear-gradient(to right, #5bdde4, #0049ac);
   transition: width 0.3s ease;
 }
 
 /* Modal Styles */
- .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: linear-gradient(to right, #5BDDE4, #0049AC);
-      padding: 25px 35px;
-      border-radius: 10px;
-      max-width: 320px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 0 25px rgba(0,0,0,0.5);
-    }
-    .modal-content p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-    .modal-content button {
-      padding: 12px 25px;
-      border: none;
-      border-radius: 6px;
-      background-color: #cc0000;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .modal-content button:hover {
-      background-color: #aa0000;
-    }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: linear-gradient(to right, #5bdde4, #0049ac);
+  padding: 25px 35px;
+  border-radius: 10px;
+  max-width: 320px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+.modal-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.modal-content button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  background-color: #cc0000;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.modal-content button:hover {
+  background-color: #aa0000;
+}
 
 @keyframes fadeIn {
-  from { opacity: 0; } to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scaleIn {
-  from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Responsive Design */
@@ -691,11 +707,11 @@ select:focus {
   }
 
   .navbar.show li {
-    margin: 10px 0; 
+    margin: 10px 0;
   }
 
   .navbar.show a {
-    padding: 14px 20px; 
+    padding: 14px 20px;
   }
 
   .hamburger {

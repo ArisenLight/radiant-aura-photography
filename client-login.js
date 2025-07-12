@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import {
   getAuth,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // Firebase config
@@ -12,7 +12,7 @@ const firebaseConfig = {
   projectId: "radiant-aura-photography",
   storageBucket: "radiant-aura-photography.firebasestorage.app",
   messagingSenderId: "84953777428",
-  appId: "1:84953777428:web:6b216b4664b9175c292e01"
+  appId: "1:84953777428:web:6b216b4664b9175c292e01",
 };
 
 // Initialize Firebase
@@ -20,38 +20,40 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Elements
-const loginForm = document.getElementById('login-form');
-const loginErrorModal = document.getElementById('loginErrorModal');
-const closeLoginErrorBtn = document.getElementById('closeLoginErrorBtn');
+const loginForm = document.getElementById("login-form");
+const loginErrorModal = document.getElementById("loginErrorModal");
+const closeLoginErrorBtn = document.getElementById("closeLoginErrorBtn");
 
 // Show login error modal
-function showLoginError(message = "Incorrect email or password. Please try again.") {
-  const msgBox = document.getElementById('loginErrorMsg');
+function showLoginError(
+  message = "Incorrect email or password. Please try again."
+) {
+  const msgBox = document.getElementById("loginErrorMsg");
   if (msgBox) msgBox.textContent = message;
-  if (loginErrorModal) loginErrorModal.style.display = 'flex';
+  if (loginErrorModal) loginErrorModal.style.display = "flex";
 }
 
 // Close error modal
 if (closeLoginErrorBtn) {
-  closeLoginErrorBtn.addEventListener('click', () => {
-    loginErrorModal.style.display = 'none';
+  closeLoginErrorBtn.addEventListener("click", () => {
+    loginErrorModal.style.display = "none";
   });
 }
 
 if (loginErrorModal) {
-  loginErrorModal.addEventListener('click', (e) => {
+  loginErrorModal.addEventListener("click", (e) => {
     if (e.target === loginErrorModal) {
-      loginErrorModal.style.display = 'none';
+      loginErrorModal.style.display = "none";
     }
   });
 }
 
 // Submit login form
 if (loginForm) {
-  loginForm.addEventListener('submit', async (e) => {
+  loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
+    const email = document.getElementById("login-email").value.trim();
+    const password = document.getElementById("login-password").value;
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
