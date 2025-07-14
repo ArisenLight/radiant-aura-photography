@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Prevent indexing of certain admin/client pages
+Disallow: /admin-login.html
+Disallow: /admin-dashboard.html
+Disallow: /client-login.html
+Disallow: /client-signup.html
+Disallow: /client-gallery.html
+
+# Reference to your sitemap
+Sitemap: https://radiantauraphotography.com/sitemap.xml
