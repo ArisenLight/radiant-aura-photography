@@ -1,12 +1,15 @@
 User-agent: *
 Allow: /
 
-# Prevent indexing of certain admin/client pages
+# Disallow private/admin routes
 Disallow: /admin-login.html
 Disallow: /admin-dashboard.html
-Disallow: /client-login.html
-Disallow: /client-signup.html
+Disallow: /login.html
 Disallow: /client-gallery.html
+Disallow: /client-gallery/
+Disallow: /scripts/
+Disallow: /functions/
+Disallow: /api/
 
-# Reference to your sitemap
+# Sitemap location
 Sitemap: https://radiantauraphotography.com/sitemap.xml
