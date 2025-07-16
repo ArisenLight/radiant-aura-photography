@@ -77,6 +77,10 @@ const clientProgressContainer = document.getElementById(
 const clientProgressBar = document.getElementById("clientProgressBar");
 const cancelClientUploadBtn = document.getElementById("cancelClientUploadBtn");
 
+const mainUploadCounter = document.getElementById("mainUploadCounter");
+const clientUploadCounter = document.getElementById("clientUploadCounter");
+
+
 // Galleries display containers
 const publicGalleryGrid = document.getElementById("publicGalleryGrid");
 const clientGalleryGrid = document.getElementById("clientGalleryGrid");
@@ -275,17 +279,25 @@ function handleMainUpload() {
   progressContainer.style.display = "block";
   progressBar.style.width = "0%";
   cancelUploadBtn.style.display = "inline-block";
+  mainUploadCounter.textContent = "";
+  mainUploadCounter.style.display = "block";
+
+
 
   const files = Array.from(fileInput.files);
-  uploadFilesToStorage(
-    files,
-    (file) => `Gallery/highlights/${category}/${file.name}`,
-    updateMainUploadProgress,
-    onMainUploadComplete,
-    onUploadError,
-    (task) => (currentUploadTask = task)
-  );
+uploadFilesToStorage(
+  files,
+  (file) => `Gallery/highlights/${category}/${file.name}`,
+  updateMainUploadProgress,
+  onMainUploadComplete,
+  onUploadError,
+  (task) => (currentUploadTask = task),
+  (done, total) => {
+    mainUploadCounter.textContent = `Uploaded ${done} of ${total} images`;
+  }
+);
 }
+
 
 ///////////////////////////////
 // HANDLE CLIENT UPLOAD ///////
@@ -301,23 +313,30 @@ function handleClientUpload() {
     return;
   }
 
-  clientUploadStatus.textContent = "";
-  clientProgressContainer.style.display = "block";
-  clientProgressBar.style.width = "0%";
-  cancelClientUploadBtn.style.display = "inline-block";
+    clientUploadStatus.textContent = "";
+    clientProgressContainer.style.display = "block";
+    clientProgressBar.style.width = "0%";
+    cancelClientUploadBtn.style.display = "inline-block";
+    clientUploadCounter.textContent = "";
+    clientUploadCounter.style.display = "block";
+
 
   const sanitizedEmail = sanitizeEmail(email);
   const files = Array.from(clientFileInput.files);
 
-  uploadFilesToStorage(
-    files,
-    (file) => `client-gallery/${sanitizedEmail}/${file.name}`,
-    updateClientUploadProgress,
-    onClientUploadComplete,
-    onUploadError,
-    (task) => (currentClientUploadTask = task)
-  );
+uploadFilesToStorage(
+  files,
+  (file) => `client-gallery/${sanitizedEmail}/${file.name}`,
+  updateClientUploadProgress,
+  onClientUploadComplete,
+  onUploadError,
+  (task) => (currentClientUploadTask = task),
+  (done, total) => {
+    clientUploadCounter.textContent = `Uploaded ${done} of ${total} images`;
+  }
+);
 }
+
 
 ////////////////////////////
 // UPLOAD FILES TO STORAGE //
@@ -328,12 +347,13 @@ function uploadFilesToStorage(
   onProgress,
   onComplete,
   onError,
-  setUploadTask
+  setUploadTask,
+  updateCounter
 ) {
   let completedCount = 0;
   let errorOccurred = false;
 
-  function uploadSingleFile(file) {
+  function uploadSingleFile(file, index) {
     return new Promise((resolve, reject) => {
       const path = getPathFunc(file);
       const storageRef = ref(storage, path);
@@ -355,6 +375,7 @@ function uploadFilesToStorage(
         },
         () => {
           completedCount++;
+          updateCounter(completedCount, files.length);
           onProgress((completedCount / files.length) * 100);
           resolve();
         }
@@ -365,7 +386,6 @@ function uploadFilesToStorage(
   Promise.all(files.map(uploadSingleFile))
     .then(() => {
       onComplete();
-      // Reset current upload task after finish
       setUploadTask(null);
     })
     .catch((error) => {
@@ -373,6 +393,7 @@ function uploadFilesToStorage(
       setUploadTask(null);
     });
 }
+
 
 ///////////////////////////////
 // PROGRESS UPDATES & HANDLERS
@@ -392,6 +413,8 @@ function onMainUploadComplete() {
   progressBar.style.width = "0%";
   previewContainer.innerHTML = "";
   fileInput.value = "";
+  mainUploadCounter.textContent = "";
+  mainUploadCounter.style.display = "none";
 }
 
 function onClientUploadComplete() {
@@ -402,7 +425,9 @@ function onClientUploadComplete() {
   clientPreviewContainer.innerHTML = "";
   clientFileInput.value = "";
   clientEmailInput.value = "";
-  loadClientGalleries(); // Refresh client galleries
+  clientUploadCounter.textContent = "";
+  clientUploadCounter.style.display = "none";
+  loadClientGalleries();
 }
 
 function onUploadError(error) {
@@ -425,6 +450,8 @@ function cancelCurrentUpload() {
     progressBar.style.width = "0%";
     progressContainer.style.display = "none";
     cancelUploadBtn.style.display = "none";
+    mainUploadCounter.textContent = "";
+    mainUploadCounter.style.display = "none";
   }
 }
 
@@ -435,6 +462,8 @@ function cancelCurrentClientUpload() {
     clientProgressBar.style.width = "0%";
     clientProgressContainer.style.display = "none";
     cancelClientUploadBtn.style.display = "none";
+    clientUploadCounter.textContent = "";
+    clientUploadCounter.style.display = "none";
   }
 }
 

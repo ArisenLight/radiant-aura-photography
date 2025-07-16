@@ -396,6 +396,19 @@ header nav {
   background: #990000;
 }
 
+.upload-counter {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ccc;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.upload-counter[style*="display: block"] {
+  opacity: 1;
+}
+
+
 /* Modals */
 .modal {
   position: fixed;
