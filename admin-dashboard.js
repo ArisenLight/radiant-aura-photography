@@ -103,8 +103,9 @@ let imageToDeleteRef = null;
 
 // --- Utility: Sanitize email for Storage path ---
 function sanitizeEmail(email) {
-  return email.replace(/[.#$[\]]/g, "_");
+  return email.replace(/\./g, "_dot_").replace(/@/g, "_at_");
 }
+
 
 //////////////////////
 // INITIAL UI SETUP //

@@ -40,8 +40,9 @@ const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
 
 // Helper to sanitize email for folder name
 function sanitizeEmail(email) {
-  return email.replace(/\./g, "_").replace(/@/g, "_at_");
+  return email.replace(/\./g, "_dot_").replace(/@/g, "_at_");
 }
+
 
 // Load client images from their folder
 async function loadClientGallery(email) {
