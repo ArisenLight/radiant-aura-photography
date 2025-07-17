@@ -67,25 +67,47 @@ if (loginForm) {
 }
 
 // Forgot Password Logic
-if (forgotPasswordLink) {
+const resetModal = document.getElementById("resetConfirmationModal");
+const closeResetModalBtn = document.getElementById("closeResetModalBtn");
+
+if (forgotPasswordLink && resetModal && closeResetModalBtn) {
   forgotPasswordLink.addEventListener("click", async (e) => {
     e.preventDefault();
     const email = document.getElementById("login-email").value.trim();
 
     if (!email) {
-      alert("Please enter your email address first.");
+      showLoginError("Please enter your email address first.");
       return;
     }
 
     try {
       await sendPasswordResetEmail(auth, email);
-      alert("Password reset email sent! Check your inbox.");
+      resetModal.style.display = "flex"; // Show modal
     } catch (error) {
       console.error(error);
-      alert("Error sending reset email: " + error.message);
+      showLoginError("Error sending reset email: " + error.message);
+    }
+  });
+
+  closeResetModalBtn.addEventListener("click", () => {
+    resetModal.style.display = "none";
+  });
+
+  // Close modal if user clicks outside of it
+  resetModal.addEventListener("click", (e) => {
+    if (e.target === resetModal) {
+      resetModal.style.display = "none";
+    }
+  });
+
+  // Optional: Close on ESC key
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && resetModal.style.display === "flex") {
+      resetModal.style.display = "none";
     }
   });
 }
+
 
 // Hamburger menu toggle
 const hamburger = document.getElementById("hamburger");
