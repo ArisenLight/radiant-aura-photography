@@ -3,6 +3,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // Firebase config
@@ -23,6 +24,7 @@ const auth = getAuth(app);
 const loginForm = document.getElementById("login-form");
 const loginErrorModal = document.getElementById("loginErrorModal");
 const closeLoginErrorBtn = document.getElementById("closeLoginErrorBtn");
+const forgotPasswordLink = document.getElementById("forgot-password-link");
 
 // Show login error modal
 function showLoginError(
@@ -64,6 +66,27 @@ if (loginForm) {
   });
 }
 
+// Forgot Password Logic
+if (forgotPasswordLink) {
+  forgotPasswordLink.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("login-email").value.trim();
+
+    if (!email) {
+      alert("Please enter your email address first.");
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Password reset email sent! Check your inbox.");
+    } catch (error) {
+      console.error(error);
+      alert("Error sending reset email: " + error.message);
+    }
+  });
+}
+
 // Hamburger menu toggle
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("navMenu");
@@ -77,7 +100,7 @@ if (hamburger && navMenu) {
   });
 }
 
-// Logout modal (only if present)
+// Logout modal
 const logoutBtn = document.getElementById("logoutBtn");
 const logoutModal = document.getElementById("logoutModal");
 const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");

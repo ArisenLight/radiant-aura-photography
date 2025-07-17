@@ -674,6 +674,29 @@ select:focus {
   background-color: #aa0000;
 }
 
+.password-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+#forgot-password-link {
+  font-size: 0.9rem;
+  color: #A4FF00;
+  text-decoration: underline;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: color 0.3s;
+}
+
+#forgot-password-link:hover {
+  color: #ff857a;
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
