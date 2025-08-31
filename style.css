@@ -374,6 +374,7 @@ header nav {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  will-change: transform;
 }
 
 
@@ -806,6 +807,8 @@ select:focus {
   .section-grid {
     grid-template-columns: 1fr; /* stack into one column */
   }
+  
+  .gallery-home { grid-template-columns: 1fr; gap: 12px; }
 }
 
 @media (max-width: 480px) {
