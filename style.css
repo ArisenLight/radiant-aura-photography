@@ -39,7 +39,6 @@ header nav {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 10px 20px 1px;
 }
 
 .navbar {
@@ -98,7 +97,8 @@ header nav {
 /* Title bar styling */
 #titleBar {
   text-align: center;
-  padding: 1px 20px 24px;
+  padding: 10px 20px 24px;
+  margin-top: 0;
   background: linear-gradient(to right, #5bdde4, #0049ac);
   color: white;
   user-select: none;
@@ -107,8 +107,7 @@ header nav {
 }
 
 #titleBar h1 {
-  font-size: 4rem;
-  font-weight: 800;
+  font-size: 3rem;
   letter-spacing: 2px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   margin-bottom: 0.2rem;
@@ -117,10 +116,11 @@ header nav {
 
 #titleBar p {
   font-style: italic;
-  font-size: 2rem;
+  font-size: 1.5rem;
   opacity: 0.92;
-  margin-top: 0;
+  
 }
+
 
 /* Carousel */
 .carousel {
@@ -151,7 +151,7 @@ header nav {
   text-align: center;
   padding: 30px 25px;
   margin: 40px auto;
-  max-width: 800px;
+  max-width: 80%;
   background: linear-gradient(to right, #5bdde4, #0049ac);
   border-radius: 15px;
   box-shadow: 0 6px 20px rgba(0, 73, 172, 0.5);
@@ -160,6 +160,13 @@ header nav {
   color: white;
   user-select: none;
 }
+
+.section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two equal columns */
+  gap: 20px; /* space between columns */
+}
+
 
 /* Back to Top Button */
 #backToTop {
@@ -305,7 +312,7 @@ header nav {
 
 /* Gallery Section */
 .gallery-section {
-  max-width: 1000px;
+  max-width: 95%;
   margin: 50px auto;
   padding: 20px 25px;
   text-align: center;
@@ -345,6 +352,33 @@ header nav {
 
 .gallery-grid img:hover,
 .gallery-grid img:focus {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(91, 221, 228, 0.8);
+}
+
+/* Gallery home */
+.gallery-home {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center; /* centers the grid content */
+  max-width: 95%;
+  margin: 0 auto; /* centers the whole gallery on the page */
+}
+
+.gallery-home img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+
+.gallery-home img:hover,
+.gallery-home img:focus {
   transform: scale(1.05);
   box-shadow: 0 8px 24px rgba(91, 221, 228, 0.8);
 }
@@ -767,6 +801,10 @@ select:focus {
   .uploaded-image {
     flex: 0 0 100%;
     margin-bottom: 20px;
+  }
+
+  .section-grid {
+    grid-template-columns: 1fr; /* stack into one column */
   }
 }
 

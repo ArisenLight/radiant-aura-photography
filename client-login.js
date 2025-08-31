@@ -82,7 +82,7 @@ if (forgotPasswordLink && resetModal && closeResetModalBtn) {
 
     try {
       await sendPasswordResetEmail(auth, email);
-      resetModal.style.display = "flex"; // Show modal
+      resetModal.style.display = "flex";
     } catch (error) {
       console.error(error);
       showLoginError("Error sending reset email: " + error.message);
